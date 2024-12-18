@@ -1,0 +1,7 @@
+FROM node:23-alpine3.20
+workdir /app
+copy package*.json .
+run npm install
+copy . .
+expose 5173
+cmd ["npm", "run", "dev"]
