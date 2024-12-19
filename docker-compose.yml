@@ -1,0 +1,32 @@
+services:
+    frontend:
+        build: frontend
+        container_name: frontend
+        ports:
+          - "5173:5173"
+        env_file:
+         - shared.env
+
+    backend:
+        build: backend
+        container_name: backend
+        ports:
+          - "8081:8081"
+        env_file:
+         - shared.env
+    
+    db:
+      image: postgres:latest
+      container_name: db
+      ports:
+       - "5432:5432"
+      env_file:
+       - shared.env
+      restart: always
+      shm_size: 128mb
+      environment:
+       POSTGRES_PASSWORD:  dsaquest
+       POSTGRES_USER: admin
+       POSTGRES_DB: dsaquest
+      volumes:
+        - ./data/postgres:/var/lib/postgresql/data
