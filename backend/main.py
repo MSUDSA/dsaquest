@@ -1,5 +1,5 @@
 from app import create_app, db
-from app.models import User
+from app.models.models import User
 import os
 from flask import request
 
@@ -11,7 +11,7 @@ app = create_app()
 def index():
     return "Hello, world!"
 
-@app.route('/signup', method = ['POST'])
+@app.route('/signup', methods = ['POST'])
 def signup():
     name, email, password = request.data["name"], request.data["email"], request.data["password"]
     user = User.query.get(email)
@@ -25,7 +25,7 @@ def signup():
         return f"Signup Success!"
     
 
-@app.route("/login", method = ["POST"])
+@app.route("/login", methods = ["POST"])
 def login():
     email, password = request.data["email"], request.data["password"]
 
