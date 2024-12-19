@@ -13,7 +13,7 @@ def index():
 
 @app.route('/signup', methods = ['POST'])
 def signup():
-    name, email, password = request.data["name"], request.data["email"], request.data["password"]
+    name, email, password = request.get_json()["name"], request.get_json()["email"], request.get_json()["password"]
     user = User.query.get(email)
     if user:
         return f"User already exists"
@@ -27,7 +27,7 @@ def signup():
 
 @app.route("/login", methods = ["POST"])
 def login():
-    email, password = request.data["email"], request.data["password"]
+    email, password = request.get_json()["email"], request.get_json()["password"]
 
     user = User.query.get(email)
     if not user:
