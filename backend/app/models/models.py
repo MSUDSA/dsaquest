@@ -40,6 +40,7 @@ class User(db.Model):
         return {
             "email": self.email,
             "name": self.name,
+            "streak": self.streak,
             "last_login": self.last_login
             
         }
