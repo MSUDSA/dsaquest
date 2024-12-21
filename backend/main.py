@@ -35,7 +35,7 @@ def login():
     else:
         valid = user.check_password(password)
         if valid:
-            return repr(user)
+            return user.get_profile()
         else:
             return f"Password incorrect"
 
