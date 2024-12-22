@@ -1,6 +1,8 @@
+version: '3'
 services:
     frontend:
-        build: frontend
+        # image: oldwhisper/dqfrontend:1.0
+        build: ./frontend
         container_name: frontend
         ports:
           - "5173:5173"
@@ -8,7 +10,8 @@ services:
          - shared.env
 
     backend:
-        build: backend
+        # image: oldwhisper/dqbackend:1.0
+        build: ./backend
         container_name: backend
         ports:
           - "8081:8081"

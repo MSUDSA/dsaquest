@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: frontend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: frontend
+    spec:
+      containers:
+        - env:
+            - name: BACKEND_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: BACKEND_PORT
+                  name: shared-env
+            - name: FRONTEND_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: FRONTEND_PORT
+                  name: shared-env
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_DB
+                  name: shared-env
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: shared-env
+            - name: POSTGRES_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_URL
+                  name: shared-env
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRES_USER
+                  name: shared-env
+          image: oldwhisper/dqfrontend:1.0
+          name: frontend
+          ports:
+            - containerPort: 5173
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -3,18 +3,19 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timezone
 
 
-
 class User(db.Model):
     email = db.Column(db.String(40), unique = True, nullable = False, primary_key = True)
     name = db.Column(db.String(40), unique = True, nullable = False)
     password_hash = db.Column(db.String(255), nullable = False)
     last_login = db.Column(db.DateTime, default=datetime.now(timezone.utc))
     streak = db.Column(db.Integer, default = 0)
+    
 
     def on_login(self):
         self.__update_last_login()
         self.__update_streak()
         db.session.commit()
+
 
     def __update_last_login(self):
         self.last_login = datetime.now(timezone.utc)
@@ -41,8 +42,7 @@ class User(db.Model):
             "email": self.email,
             "name": self.name,
             "streak": self.streak,
-            "last_login": self.last_login
-            
+            "last_login": self.last_login  
         }
     
 
