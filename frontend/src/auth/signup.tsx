@@ -6,9 +6,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Add your signup logic here (e.g., API call)
-    console.log({ name, email, password });
+
   };
 
   return (
@@ -27,6 +25,7 @@ const Signup = () => {
       </div>
       <button type="submit">Sign Up</button>
     </form>
+    
   );
 };
 
