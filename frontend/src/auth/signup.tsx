@@ -8,8 +8,13 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Add your signup logic here (e.g., API call)
-    const res = signUserUp({name, email, password});
-    setDisplayMessage(res)
+    const res = await signUserUp({name, email, password});
+    if (res["status_code"] == 404) {
+      setDisplayMessage(res["error"]);
+    }
+    else {
+      setDisplayMessage(res['success']);
+    }
   };
   const [displayMessage, setDisplayMessage] = useState("");
   return (
@@ -27,7 +32,7 @@ const Signup = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
       <button type="submit">Sign Up</button>
-      <p>{res}</p>
+      <p>{displayMessage}</p>
     </form>
   );
 };
