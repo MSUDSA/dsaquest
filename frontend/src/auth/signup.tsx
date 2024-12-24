@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {signUserUp} from '../lib/auth'
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -8,6 +8,7 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Add your signup logic here (e.g., API call)
+    signUserUp({name, email, password});
     console.log({ name, email, password });
   };
 

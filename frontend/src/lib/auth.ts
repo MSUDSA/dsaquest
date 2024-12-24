@@ -13,7 +13,7 @@ export async function signUserIn({email, password} : userAuth){
             body: JSON.stringify({email, password})
         })
         return await res.json()
-} 
+}
 
 export async function signUserUp({name, email, password}: userAuth) {
     const res = await fetch("http://localhost:8081/signup", {
