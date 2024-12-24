@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import Login from './auth/login'
+import LandingPage from './pages/LandingPage'
 
 function App() {
 
@@ -7,9 +7,7 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/concepts' element={<Login />} />
-        <Route path='/anything' element={<Login />} />
+        <Route path='/' element={<LandingPage />} />
       </Routes>
     </Router>
   )
