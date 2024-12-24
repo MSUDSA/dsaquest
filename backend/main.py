@@ -19,8 +19,9 @@ def signup():
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        return jsonify({"success": f"Signup Success!"})
-    abort(404, description=jsonify({"error": f"User already exists"}))
+        return jsonify({"success": f"Signup Success!", 'status_code': 200})
+    return jsonify({"error": f"User already exists", "status_code": 404})
+    
 
 @app.route("/login", methods = ["POST"])
 def login():

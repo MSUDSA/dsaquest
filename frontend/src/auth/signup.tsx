@@ -8,10 +8,10 @@ const Signup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Add your signup logic here (e.g., API call)
-    signUserUp({name, email, password});
-    console.log({ name, email, password });
+    const res = signUserUp({name, email, password});
+    setDisplayMessage(res)
   };
-
+  const [displayMessage, setDisplayMessage] = useState("");
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -27,6 +27,7 @@ const Signup = () => {
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
       </div>
       <button type="submit">Sign Up</button>
+      <p>{res}</p>
     </form>
   );
 };
