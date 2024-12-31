@@ -18,18 +18,24 @@ const Login = () => {
   };
 
   return (
-    <div style={{
+    <div 
+    className=''
+    style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '100vh'
-    }}>
-      <form onSubmit={handleSubmit} style={{
+      height: '100vh',
+    }}
+    >
+      <form onSubmit={handleSubmit} 
+      className=''
+      style={{
         backgroundColor: 'white',
         padding: '20px',
         borderRadius: '8px',
         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
-      }}>
+      }}
+      >
         <div>
           <label>Email:</label>
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
