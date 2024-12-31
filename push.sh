@@ -1,5 +1,5 @@
 git add .
-echo "Enter message"
+echo "Enter commit message"
 read message
 git commit -m "$message"
 git push origin main
