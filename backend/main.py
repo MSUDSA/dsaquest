@@ -12,15 +12,16 @@ def index():
 @app.route('/signup', methods = ['POST'])
 def signup():
     data = request.get_json()
-    name, email, password = data['email'], data['password']
+    name, email, password = data['name'], data['email'], data['password']
     user = User.query.get(email)
     if not user:
         user = User(name=name, email=email)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-        return jsonify({"success": f"Signup Success!"})
-    abort(404, description=jsonify({"error": f"User already exists"}))
+        return jsonify({"success": f"Signup Success!", 'status_code': 200})
+    return jsonify({"error": f"User already exists", "status_code": 404})
+    
 
 @app.route("/login", methods = ["POST"])
 def login():
@@ -33,7 +34,7 @@ def login():
     else:
         valid = user.check_password(password)
         if valid:
-            return jsonify({**user.get_profile(), "status_code": 404})
+            return jsonify({**user.get_profile(), "status_code": 200, "success": "Successfully logged in"})
         else:
             return jsonify({"error": "Password incorrect", "status_code": 404})
 

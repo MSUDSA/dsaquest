@@ -12,9 +12,11 @@ const Login = () => {
     const res = await signUserIn({email, password})
     if (res.status_code === 404) {
       setErrorMessage(res.error)
+      setSuccessMessage("")
     }
     else {
       setSuccessMessage(res.success)
+      setErrorMessage("")
     }
   };
 

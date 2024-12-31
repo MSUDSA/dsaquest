@@ -1,12 +1,16 @@
+networks:
+  app_network:
 services:
-    # frontend:
-    #     # image: oldwhisper/dqfrontend:1.0
-    #     build: ./frontend
-    #     container_name: frontend
-    #     ports:
-    #       - "5173:5173"
-    #     env_file:
-    #      - shared.env
+    frontend:
+        # image: oldwhisper/dqfrontend:1.0
+        build: ./frontend
+        container_name: frontend
+        ports:
+          - "5173:5173"
+        env_file:
+         - shared.env
+        networks:
+         - app_network
 
     backend:
         # image: oldwhisper/dqbackend:1.0
@@ -18,6 +22,8 @@ services:
          - shared.env
         depends_on:
           - db
+        networks:
+         - app_network
     
     db:
       image: postgres:latest
@@ -34,3 +40,5 @@ services:
        POSTGRES_DB: dsaquest
       volumes:
         - ./data/postgres:/var/lib/postgresql/data
+      networks:
+       - app_network
