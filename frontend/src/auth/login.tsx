@@ -46,7 +46,7 @@ const Login = () => {
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" style={{ backgroundColor: 'grey', color: 'orange' }}>Login</button>
         <p style={{ color: 'green' }}>{successMessage}</p>
         <p style={{ color: 'red' }}>{errorMessage}</p>
       </form>

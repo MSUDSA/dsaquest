@@ -9,18 +9,18 @@ const LandingPage = () => {
     return (
         <main className="h-full">
             <div className="h-full flex flex-col justify-center items-center">
-                <h1>Welcome to DSAQUEST</h1>
+                <h1 style={{ color: 'orange' }}>Welcome to DSAQUEST</h1>
                 <div>
                     <button onClick={() => {
                         setShowSignup(true);
                         setShowLogin(false);
-                    }} style={{ marginRight: '10px' }}>
+                    }} style={{ marginRight: '10px', backgroundColor: 'grey', color: 'orange' }}>
                         Sign Up
                     </button>
                     <button onClick={() => {
                         setShowLogin(true);
                         setShowSignup(false);
-                    }}>
+                    }} style={{ backgroundColor: 'grey', color: 'orange' }}>
                         Log In
                     </button>
                 </div>

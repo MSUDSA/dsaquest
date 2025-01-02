@@ -1,11 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body, html{
+
+body, html {
   width: 100vw;
   height: 100vh;
+  background-color: #333; /* Dark grey background */
 }
-#root{
+
+#root {
   width: 100vw;
   height: 100vh;
 }

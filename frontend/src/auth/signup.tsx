@@ -42,7 +42,7 @@ const Signup = () => {
           <label>Password:</label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button type="submit">SignUp</button>
+        <button type="submit" style={{ backgroundColor: 'grey', color: 'orange' }}>Sign Up</button>
         <p>{displayMessage}</p>
       </form>
     </div>
