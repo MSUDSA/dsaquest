@@ -14,11 +14,15 @@ const LandingPage = () => {
                     <button onClick={() => {
                         setShowSignup(true);
                         setShowLogin(false);
-                    }}>Sign Up</button>
+                    }} style={{ marginRight: '10px' }}>
+                        Sign Up
+                    </button>
                     <button onClick={() => {
                         setShowLogin(true);
                         setShowSignup(false);
-                    }}>Log In</button>
+                    }}>
+                        Log In
+                    </button>
                 </div>
                 {showSignup && <Signup />}
                 {showLogin && <Login />}
