@@ -20,7 +20,7 @@ def signup():
         db.session.add(user)
         db.session.commit()
         return jsonify({"success": f"Signup Success!", 'status_code': 200})
-    return jsonify({"error": f"User already exists", "status_code": 404})
+    return jsonify({"error": f"User already exists", "status_code": 401})
     
 
 @app.route("/login", methods = ["POST"])
@@ -30,13 +30,13 @@ def login():
 
     user = User.query.get(email)
     if not user:
-        return jsonify({"error": f"User does not exist", "status_code": 404})
+        return jsonify({"error": f"User does not exist", "status_code": 401})
     else:
         valid = user.check_password(password)
         if valid:
             return jsonify({**user.get_profile(), "status_code": 200, "success": "Successfully logged in"})
         else:
-            return jsonify({"error": "Password incorrect", "status_code": 404})
+            return jsonify({"error": "Password incorrect", "status_code": 401})
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0", port= os.getenv("BACKEND_PORT", 8081))

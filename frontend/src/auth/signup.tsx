@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signUserUp } from '../lib/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -7,13 +8,16 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [displayMessage, setDisplayMessage] = useState('');
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await signUserUp({ name, email, password });
-    if (res.status_code === 404) {
+    if (res.status_code === 401) {
       setDisplayMessage(res.error);
     } else {
       setDisplayMessage(res.success);
+      navigate('/login')
     }
   };
 

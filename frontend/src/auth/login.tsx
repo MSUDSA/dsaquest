@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { signUserIn } from '../lib/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -7,15 +8,23 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await signUserIn({ email, password });
-    if (res.status_code === 404) {
+    if (res.status_code === 401) {
       setErrorMessage(res.error);
       setSuccessMessage("");
     } else {
       setSuccessMessage(res.success);
       setErrorMessage('');
+      sessionStorage.setItem("email", res.email)
+      sessionStorage.setItem("name", res.name)
+      sessionStorage.setItem("streak", res.streak)
+      sessionStorage.setItem("last_login", res.last_login)
+      navigate('/dashboard')
+
     }
   };
 

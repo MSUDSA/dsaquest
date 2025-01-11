@@ -4,6 +4,7 @@ import Login from './auth/login'
 import Signup from './auth/signup'
 import Navbar from './components/Navbar'
 import './index.css'
+import Dashboard from './pages/Dashboard'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/signup' element={<Dashboard />} />
       </Routes>
     </Router>
   )
