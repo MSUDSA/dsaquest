@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { signUserUp } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
+import mockFunctions from '../mock';
+import { mode } from '../lib';
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -12,7 +14,7 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await signUserUp({ name, email, password });
+    const res = mode === "production" ? await signUserUp({ name, email, password }) : mockFunctions().signUserUp({name, email, password})
     if (res.status_code === 401) {
       setDisplayMessage(res.error);
     } else {

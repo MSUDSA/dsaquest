@@ -2,7 +2,10 @@
   "Users": [
     {
       "name": "Olu",
-      "email": "Olu@gmail.com"
+      "email": "Olu@gmail.com",
+      "password" : "segunlovesJesus",
+      "streak" : 1,
+      "last_login" : ""
     }
   ]
 }

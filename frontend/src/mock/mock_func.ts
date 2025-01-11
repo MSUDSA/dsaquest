@@ -3,13 +3,31 @@ import db from "./mock_db.json"
 export const BuildMockFunction = ({}) => {
     return function mockFunction({} ={}) {
         return  Object.freeze({
-            getAppName: () => console.log("This is working...")
+            getAppName: () => console.log("This is working..."),
+            signUserIn,
+            signUserUp
         })
     }
 }
 
+interface UserType {
+    name : string
+    email: string
+    password : string
+    streak : Number
+    last_login : Date
+}
+interface UsersignUpType {
+    name : string
+    email: string
+    password : string
+}
+interface UsersignInType {
+    email: string
+    password : string
+}
 
-function signUserIn({ email, password }: userAuth) {
+function signUserIn({ email, password }: UsersignInType) {
     const res = db.Users.find((user) => user.email === email)
     if (res) {
         if (res.password === password) {
@@ -30,10 +48,10 @@ function signUserIn({ email, password }: userAuth) {
 
 }
 
-function signUserUp({ name, email, password }: userAuth) {
+function signUserUp ({ name, email, password }: UsersignUpType) {
     const res = db.Users.find((user) => user.email === email)
     if (!res) {
-        db.Users.push({ name, email, password, streak : 1, last_login : 1,})
+        db.Users.push({ name, email, password, streak : 1, last_login : "1",})
         return {"success": "Signup Success!", 'status_code': 200}
     } else {
         return {"error": "User already exists", "status_code": 401}
