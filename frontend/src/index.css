@@ -6,9 +6,29 @@ body, html {
   width: 100vw;
   height: 100vh;
   background-color: #333; /* Dark grey background */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 #root {
   width: 100vw;
   height: 100vh;
+}
+
+.scrolling-text {
+  justify-self: center;
+  white-space: nowrap;
+  /* overflow: hidden; */
+  box-sizing: border-box;
+}
+
+.scrolling-text p {
+  display: inline-block;
+  animation: scroll-left 10s linear infinite;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
