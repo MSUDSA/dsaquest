@@ -1,4 +1,4 @@
-interface userAuth {
+export interface userAuth {
     email: string,
     password: string,
     name?: string
