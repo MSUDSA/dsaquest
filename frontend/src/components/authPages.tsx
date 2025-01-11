@@ -5,7 +5,7 @@ import Signup from "../auth/signup"
 const LoginSignUp = () => {
   return (
     <div className="h-1/2 flex flex-col justify-center items-center">
-      <h2>DSAQUEST</h2>
+      <h2>DSAQUEST WEB APPLICATION</h2>
       <Login></Login>
     </div>
   )
