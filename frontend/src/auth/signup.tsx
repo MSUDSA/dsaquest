@@ -20,7 +20,12 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = mode === "production" ? await signUserUp({ name, email, password }) : mockFunctions().signUserUp({name, email, password})
+    let res;
+    if (mode === "production") {
+       res = await signUserUp({email, password})
+    } else {
+      res = mockFunctions().signUserUp({name, email, password})
+    }
     if (res.status_code === 401) {
       setDisplayMessage(res.error);
     } else {
