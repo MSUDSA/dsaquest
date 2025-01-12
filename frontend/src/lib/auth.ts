@@ -3,7 +3,20 @@ export interface userAuth {
     password: string,
     name?: string
 }
-
+// interface signInUserType {
+//     ({ email, password }: userAuth) => {
+//         email: string;
+//         name: string;
+//         streak: number;
+//         last_login: string;
+//         status_code: number;
+//         success: string;
+//         error?: undefined;
+//     } | {
+//         error: string;
+//         success?: undefined;
+//     }
+// }
 export async function signUserIn({ email, password }: userAuth) {
     const res = await fetch("http://localhost:8081/login", {
         method: 'POST',
@@ -24,4 +37,9 @@ export async function signUserUp({ name, email, password }: userAuth) {
         body: JSON.stringify({ email, password, name })
     })
     return await res.json()
+}
+
+export function logUserOut() {
+    sessionStorage.clear()
+    return true
 }

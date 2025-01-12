@@ -57,4 +57,3 @@ function signUserUp ({ name, email, password }: UsersignUpType) {
         return {"error": "User already exists", "status_code": 401}
     }
 }
-

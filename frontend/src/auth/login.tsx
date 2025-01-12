@@ -3,9 +3,13 @@ import { signUserIn } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
 import { mode } from '../lib';
 import mockFunctions from '../mock';
-// import {mode} from "../lib/index.ts";
+import { userInfoType } from '../components/Navbar';
 
-const Login = () => {
+interface LoginProps {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserInfo : React.Dispatch<React.SetStateAction<userInfoType | null>>
+}
+const Login = ({setIsLoggedIn, setUserInfo} : LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -15,17 +19,30 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = mode === "production" ? await signUserIn({ email, password }) : mockFunctions().signUserIn({email, password})
+    let res;
+    if (mode === "production") {
+       res = await signUserIn({email, password})
+    } else {
+      res = mockFunctions().signUserIn({email, password})
+    }
     if (res.status_code === 401) {
       setErrorMessage(res.error);
       setSuccessMessage("");
     } else {
       setSuccessMessage(res.success);
       setErrorMessage('');
-      sessionStorage.setItem("email", res.email)
-      sessionStorage.setItem("name", res.name)
-      sessionStorage.setItem("streak", res.streak)
-      sessionStorage.setItem("last_login", res.last_login)
+      sessionStorage.setItem("userInfo", JSON.stringify({
+        email: res.email,
+        name: res.name,
+        streak: res.streak,
+        last_login: res.last_login
+      }))
+      sessionStorage.setItem("isLoggedIn", "true")
+      setIsLoggedIn(true)
+      setUserInfo({
+        email: res.email,
+        name: res.name,
+      })
       navigate('/dashboard')
 
     }

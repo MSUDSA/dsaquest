@@ -1,6 +1,4 @@
-import { useState } from "react";
-import Login from "../auth/login";
-import Signup from "../auth/signup";
+
 
 const LandingPage = () => {
     return (

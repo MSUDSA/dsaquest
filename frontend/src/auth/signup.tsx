@@ -9,8 +9,14 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [displayMessage, setDisplayMessage] = useState('');
-
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("isLoggedIn") === "true")
   const navigate = useNavigate()
+
+  if (isLoggedIn) {
+    navigate('/dashboard')
+  }
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

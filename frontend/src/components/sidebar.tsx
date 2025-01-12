@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logUserOut } from '../lib/auth';
+import { userInfoType } from './Navbar';
 
 type SidebarProps = {
-  route: string
+  route: string,
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserInfo : React.Dispatch<React.SetStateAction<userInfoType | null>>
+
 }
 
-const Sidebar = ({route} : SidebarProps) => {
+const Sidebar = ({route, setIsLoggedIn, setUserInfo} : SidebarProps) => {
+  const navigate = useNavigate()
   return (
     <aside className="w-1/5 bg-gray-800 text-white p-4 flex flex-col">
       <h2 className="text-lg font-bold mb-4">{route}</h2>
@@ -31,7 +37,14 @@ const Sidebar = ({route} : SidebarProps) => {
           </Link>
         </li>
       </ul>
-      <button className="bg-red-600 rounded-lg py-2 px-4 mt-auto hover:bg-red-800">
+      <button className="bg-red-600 rounded-lg py-2 px-4 mt-auto hover:bg-red-800" onClick={()=> {
+        if (logUserOut()) {
+          navigate('/')
+          setIsLoggedIn(false)
+          setUserInfo(null)
+          
+        }
+      }}>
         Logout
       </button>
     </aside>

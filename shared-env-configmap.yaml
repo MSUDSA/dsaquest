@@ -6,6 +6,7 @@ data:
   POSTGRES_PASSWORD: dsaquest
   POSTGRES_URL: postgresql://admin:dsaquest@db:5432/dsaquest
   POSTGRES_USER: admin
+  MODE: production
 kind: ConfigMap
 metadata:
   creationTimestamp: null
